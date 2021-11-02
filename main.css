@@ -1,0 +1,20 @@
+.hibauzenet{
+    color: red;
+    font-size:0.7em ;
+    margin-left: 33.5%;
+}
+.anyad{
+    margin: auto;
+}
+body{
+    background-image: url("pexels-monstera-5635098.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.card{
+    background-color: rgba(211, 211, 211, 0.9);
+}
+.adatok{
+    background-color: rgba(211, 211, 211, 0.9);
+    background-position: center;
+}
