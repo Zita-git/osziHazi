@@ -53,7 +53,7 @@ class Macskak{
     public function getSuly() : int {
         return $this->suly;
     }
-    public function setSuly(int $suly) : void  {
+    public function setSuly(int $suly)   {
         $this->suly = $suly;
     }
 

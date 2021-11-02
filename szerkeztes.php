@@ -30,13 +30,13 @@ $sikeres=false;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ujNev = $_POST['nev'] ?? '';
     $ujSzuletesi_nap = $_POST['szuletesi_nap'] ?? '';
-    $ujSuly = $_POST['suly'] ?? 0;
+    $ujSuly = $_POST['suly'] ?? '';
     $ujNem = $_POST['nem'] ?? '';
     $ujKinezet = $_POST['kinezet'] ?? '';
 
     $macskak->setNev($ujNev);
     $macskak->setSzuletesi_nap(new DateTime($ujSzuletesi_nap));
-    $macskak->setSuly($ujSuly);
+    $macskak->setSuly((int)$ujSuly);
     $macskak->setNem($ujNem);
     $macskak->setKinezet($ujKinezet);
 
