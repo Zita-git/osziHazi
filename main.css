@@ -1,10 +1,8 @@
 .hibauzenet{
     color: red;
     font-size:0.7em ;
-    margin-left: 33.5%;
-}
-.anyad{
-    margin: auto;
+    margin-left: 50%;
+    font-weight: bold;
 }
 body{
     background-image: url("pexels-monstera-5635098.jpg");
@@ -13,8 +11,15 @@ body{
 }
 .card{
     background-color: rgba(211, 211, 211, 0.9);
+    margin-right: 1em;
+    margin-bottom: 1em;
+    text-align: center;
 }
-.adatok{
+.jumBa{
+    background-color: rgba(211, 211, 211, 0.9);
+}
+.hatter{
     background-color: rgba(211, 211, 211, 0.9);
     background-position: center;
+    margin-bottom: 1em;
 }

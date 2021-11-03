@@ -97,58 +97,78 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
 
 </head>
 <body>
     
-<div class=" p-5  text-white text-center">
-        <h1>Macskák</h1>
-        <p>Macska szerkesztése</p>
-    </div>
 <?php if(!$sikeres){?>
-    <div class="adatok container">
+    <div class="container">
         <form method="POST">
+        <form method="post">
+        <div class="jumBa p-5  text-white text-center">
+            <h1>Macskák</h1>
+            <p>Macska szerkesztése</p>
+        </div>
+            <div class="container hatter">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <p class="col-4">Név:</p>
+                    <div class="col-4"><input type="text" name="nev" value="<?php echo $macskak->getNev()?>" minlength="2" required></input></div>
+                    <div class="hibauzenet" id="hibaNev"><?php echo $nevHibaUzenet; ?></div>
+                    <div class="col-2"></div>
+                </div>
 
-            <div class="row">
-                <p class="col-4">Név:</p>
-                <div class="col-8"><input type="text"  name="nev" placeholder="Garfield" value='<?php  $macskak->getNev();  ?>'></input></div>
-                <div class="hibauzenet"><?php echo $nevHibaUzenet; ?></div>
+
+                <div class="row">
+                    <div class="col-2"></div>
+                    <p class="col-4">Születésnap:</p>
+                    <div class="col-4"><input type="date" name="szuletesi_nap" value="<?php echo $macskak->getSzuletesi_nap()->format('Y-m-d')?>" required></input></div>
+                    <div class="hibauzenet" id="hibaSzuletesi_nap"><?php echo $szuletesi_napHibaUzenet; ?></div>
+                    <div class="col-2"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2"></div>
+                    <p class="col-4">Nem:</p>
+                    <div class="col-4"><input type="text" name="nem" value="<?php echo $macskak->getNem()?>" required></input></div>
+                    <div class="hibauzenet"  id="hibaNem"><?php echo $nemHibaUzenet; ?></div>
+                    <div class="col-2"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2"></div>
+                    <p class="col-4">Súly:</p>
+                    <div class="col-4"><input type="number" name="suly" value="<?php echo $macskak->getSuly()?>" required></input></div>
+                    <div class="hibauzenet" id="hibaSuly"><?php echo $sulyHibaUzenet; ?></div>
+                    <div class="col-2"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2"></div>
+                    <p class="col-4">Kinézet:</p>
+                    <div class="col-4"><input type="text" name="kinezet" value="<?php echo $macskak->getKinezet()?>"  minlength="3" required></input></div>
+                    <div class="hibauzenet" id="hibaKinezet"><?php echo $kinezetHibaUzenet; ?></div>
+                    <div class="col-2"></div>
+                </div>
+
+                <div class="row ">
+                    <div class="col-2"></div>
+                    <div class="col-4 "><button class="btn  btn-light btn-outline-secondary hozzaad col-12" type="submit">Szerkeszt</button></div>
+                    <a href="index.php?" class="btn  btn-light btn-outline-secondary col-4">Vissza az oldalra</a>
+                    <div class="col-2"></div>
+                </div>
             </div>
-
-            <div class="row">
-                <p class="col-4">Születésnap:</p>
-                <div class="col-8"><input type="date" name="szuletesi_nap"  value='<?php  $macskak-> getSzuletesi_nap();  ?>'></input></div>
-                <div class="hibauzenet"><?php echo $szuletesi_napHibaUzenet; ?></div>
-            </div>
-
-            <div class="row">
-                <p class="col-4">nem:</p>
-                <div class="col-8"><input type="text" name="nem" placeholder="házi macska" value='<?php   $macskak-> getNem();   ?>'></input></div>
-                <div class="hibauzenet"><?php echo $nemHibaUzenet; ?></div>
-            </div>
-
-            <div class="row">
-                <p class="col-4">Súly:</p>
-                <div class="col-8"><input type="number" step=any name="suly" placeholder="25" value='<?php   $macskak-> getSuly();   ?>'></input>kg</div>
-                <div class="hibauzenet"><?php echo $sulyHibaUzenet; ?></div>
-            </div>
-
-            <div class="row">
-                <p class="col-4">Kinézet:</p>
-                <div class="col-8"><input type="text" name="kinezet" placeholder="vörös cirmos" value='<?php   $macskak-> getKinezet();   ?>'></input></div>
-                <div class="hibauzenet"><?php echo $kinezetHibaUzenet; ?></div>
-            </div>
-
-            <div class="row ">
-                <div class="col-4 "><input class="hozzaad" type="submit" value="Szerkeszt"></div>
-                <a class='linkform col-8' href='index.php?'>Vissza az oldalra</a>
-            </div>
-
-        </form>
 
         <?php } else { ?>
-        <h1 class='success'>Az adatok sikeresen modosítva lettek!</h1>
-        <a class='linkform col-4' href='index.php?'>Vissza az oldalra</a>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="alert alert-success text-center">
+                        <strong>Siker!</strong> Az adatok módosítva lettek! <a href="index.php?" class="alert-link">Visza az oldalra</a>.
+                    </div>
+                    <img src="barbi.png" alt="barbara" class="barbi img-responsive">
+                </div>
+            </div>
         <?php } ?>
     </div>
 </body>

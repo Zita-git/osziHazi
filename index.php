@@ -101,56 +101,69 @@ $macskak = Macskak::osszes();
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
         <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+        <script src='main.js'></script>
     </head>
     <body>
-    <div class=" p-5  text-white text-center">
+    <div class="jumBa container p-5  text-white text-center">
         <h1>Macskák</h1>
         <p>Új macskák megadása</p>
     </div>
     <div class="container-fluid">
-        <div class='container'>
+        <div class='container hatter'>
             <form method="POST">
 
                 <div class="row">
+                    <div class="col-2"></div>
                     <p class="col-4">Név:</p>
-                    <div class="col-8"><input type="text"  name="nev" placeholder="Garfield" value='<?php visszatolt($nevMezo) ?>'></input></div>
-                    <div class="hibauzenet"><?php echo $nevHibaUzenet; ?></div>
+                    <div class="col-4"><input type="text" id="nev" name="nev" placeholder="Garfield" value='<?php visszatolt($nevMezo) ?>' minlength="2" required></input></div>
+                    <div class="hibauzenet" id="hibaNev" ><?php echo $nevHibaUzenet; ?></div>
+                    <div class="col-2"></div>
                 </div>
 
                 <div class="row">
+                    <div class="col-2"></div>
                     <p class="col-4">Születésnap:</p>
-                    <div class="col-8"><input type="date" name="szuletesi_nap"  value='<?php visszatolt($szuletesi_napMezo) ?>'></input></div>
-                    <div class="hibauzenet"><?php echo $szuletesi_napHibaUzenet; ?></div>
+                    <div class="col-4"><input type="date" id="szuletesi_nap" name="szuletesi_nap"  value='<?php visszatolt($szuletesi_napMezo) ?>' required></input></div>
+                    <div class="hibauzenet" id="hibaSzuletesi_nap"><?php echo $szuletesi_napHibaUzenet; ?></div>
+                    <div class="col-2"></div>
                 </div>
 
                 <div class="row">
-                    <p class="col-4">nem:</p>
-                    <div class="col-8"><input type="text" name="nem" placeholder="házi macska" value='<?php visszatolt($nemMezo) ?>'></input></div>
-                    <div class="hibauzenet"><?php echo $nemHibaUzenet; ?></div>
+                    <div class="col-2"></div>
+                    <p class="col-4">Nem:</p>
+                    <div class="col-4"><input type="text" id="nem" name="nem" placeholder="házi macska" value='<?php visszatolt($nemMezo) ?>' required></input></div>
+                    <div class="hibauzenet" id="hibaNem"><?php echo $nemHibaUzenet; ?></div>
+                    <div class="col-2"></div>
                 </div>
 
                 <div class="row">
+                    <div class="col-2"></div>
                     <p class="col-4">Súly:</p>
-                    <div class="col-8"><input type="number" step=any name="suly" placeholder="25" value='<?php visszatolt($sulyMezo) ?>'></input>kg</div>
-                    <div class="hibauzenet"><?php echo $sulyHibaUzenet; ?></div>
+                    <div class="col-4"><input type="number" id="suly" step=any name="suly" placeholder="25" value='<?php visszatolt($sulyMezo) ?>' required></input>kg</div>
+                    <div class="hibauzenet" id="hibaSuly"><?php echo $sulyHibaUzenet; ?></div>
+                    <div class="col-2"></div>
                 </div>
 
                 <div class="row">
+                    <div class="col-2"></div>
                     <p class="col-4">Kinézet:</p>
-                    <div class="col-8"><input type="text" name="kinezet" placeholder="vörös cirmos" value='<?php visszatolt($kinezetMezo) ?>'></input></div>
-                    <div class="hibauzenet"><?php echo $kinezetHibaUzenet; ?></div>
+                    <div class="col-4"><input type="text" id="kinezet" name="kinezet" placeholder="vörös cirmos" value='<?php visszatolt($kinezetMezo) ?>' minlength="3" required></input></div>
+                    <div class="hibauzenet" id="hibaKinezet"><?php echo $kinezetHibaUzenet; ?></div>
+                    <div class="col-2"></div>
                 </div>
 
                 <div class="row">
-                    <div class="col-12 "><input class="hozzaad" type="submit" value="Új macska hozzáadása"></div>
+                    <div class="col-4"></div>
+                    <div class="col-4 "><input class="btn  btn-light btn-outline-secondary" id="ujCica" type="submit" value="Új macska hozzáadása"></div>
+                    <div class="col-4"></div>
                 </div>
 
             </form>
-    </div>
+        </div>
     </div >
 
     <div class="container">
-        <div class="row anyad">
+        <div class="row">
             
             <?php
                 foreach ($macskak as $macska) {
@@ -160,16 +173,15 @@ $macskak = Macskak::osszes();
                         echo "</h3>";
                         echo "<div class='card-body'>";
                             echo "<p>" . $macska->getSzuletesi_nap()->format('Y-m-d') . "</p>";
-                            echo "<p>" . $macska->getnem(). "</p>";
-                            echo "<p>" . $macska->getSuly(). " kg</p>";
                             echo "<p>" . $macska->getNem(). "</p>";
+                            echo "<p>" . $macska->getSuly(). " kg</p>";
                             echo "<p>" . $macska->getKinezet() . "</p>";
                         echo "</div>";
                         echo "<form method='POST'>";
                             echo "<div class='card-footer '>";
                                 echo "<input type='hidden' name='deleteId' value='" . $macska->getId() . "'>";
-                                echo "<button class='gombform col-6' type='submit'>Törlés</button>";
-                                echo "<a class='linkform col-6' href='szerkeztes.php?id=" . $macska->getId() . "'>Szerkesztés</a>";
+                                echo "<button class='btn btn-light btn-outline-secondary col-6' type='submit'>Törlés</button>";
+                                echo "<a class='btn  btn-light btn-outline-secondary col-6' href='szerkeztes.php?id=" . $macska->getId() . "'>Szerkesztés</a>";
                             echo "</div>";
                         echo "</form>";
                     echo "</div>";
